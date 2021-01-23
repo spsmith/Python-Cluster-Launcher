@@ -3,11 +3,11 @@ import sys
 import time
 import subprocess
 import yaml
+import pathlib
 
 class ClusterLauncher:
     def __init__(self, config_yaml):
         self.Config = config_yaml
-        print(self.Config)
 
     def Launch(self):
         #read config
@@ -36,11 +36,10 @@ class ClusterLauncher:
 
     @staticmethod
     def LaunchUniCAVEWindow(path, machine_name=None):
-        #args = [path, "-popupWindow"]
-        args = [path]
+        args = [path, "-popupWindow"]
         if machine_name is not None:
             args = args + ["overrideMachineName", machine_name]
         return subprocess.Popen(args)
 
 if __name__ == "__main__":
-    ClusterLauncher(os.path.join(os.getcwd(), "G:\Work\[UniCAVE]\PythonClusterLauncher\config.yaml")).Launch()
+    ClusterLauncher(os.path.join(pathlib.Path(__file__).parent.absolute(), "config.yaml")).Launch()
