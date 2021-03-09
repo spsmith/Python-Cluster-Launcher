@@ -17,10 +17,17 @@ class ClusterLauncher:
             #launch head node
             head = ClusterLauncher.LaunchUniCAVEWindow(config["build-path"], config["head-node"])
 
+            #wait a bit before launching child nodes
+            if config["head-wait"] is not None:
+                time.sleep(config["head-wait"])
+
             #launch child nodes
             children = []
             for child_node in config["child-nodes"]:
                 children.append(ClusterLauncher.LaunchUniCAVEWindow(config["build-path"], child_node))
+                #wait a bit between launching each child
+                if config["child-wait"] is not None:
+                    time.sleep(config["child-wait"])
 
             #poll head node process
             done = False
@@ -33,7 +40,6 @@ class ClusterLauncher:
             for child in children:
                 child.kill()
 
-
     @staticmethod
     def LaunchUniCAVEWindow(path, machine_name=None):
         args = [path, "-popupWindow"]
@@ -42,4 +48,4 @@ class ClusterLauncher:
         return subprocess.Popen(args)
 
 if __name__ == "__main__":
-    ClusterLauncher(os.path.join(pathlib.Path(__file__).parent.absolute(), "config.yaml")).Launch()
+    ClusterLauncher(os.path.join(pathlib.Path(__file__).parent.absolute(), "input_test.yaml")).Launch()

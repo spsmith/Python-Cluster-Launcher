@@ -126,3 +126,4 @@ dmypy.json
 
 config.yaml
 .vscode/
+input_test.yaml
