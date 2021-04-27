@@ -48,4 +48,4 @@ class ClusterLauncher:
         return subprocess.Popen(args)
 
 if __name__ == "__main__":
-    ClusterLauncher(os.path.join(pathlib.Path(__file__).parent.absolute(), "input_test.yaml")).Launch()
+    ClusterLauncher(os.path.join(pathlib.Path(__file__).parent.absolute(), "config/input_test.yaml")).Launch()

@@ -124,6 +124,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-config.yaml
+config/*
 .vscode/
-input_test.yaml
